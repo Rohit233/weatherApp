@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">Weather App</string>
     <string name="weather">Weather</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
     <string name="button">Get Weather</string>
     <string name="city">"Enter Your City"</string>
     <string name="temperature">Temp</string>
     <string name="speed">Wind Speed</string>
     <string name="humidity">Humidity</string>
     <string name="w1">Weather</string>
+    <string name="add_city">Add City</string>
+    <string name="addcity">addcity</string>
+    <string name="save">save</string>
+    <string name="citylist">CityList</string>
 </resources>
