@@ -439,8 +439,6 @@ public class MainActivity extends AppCompatActivity {
                  cList=new Intent(MainActivity.this,List.class);
                 cList.putExtra("l",name);
                startActivity(cList);
-
-
         }
         return super.onOptionsItemSelected(item);
 

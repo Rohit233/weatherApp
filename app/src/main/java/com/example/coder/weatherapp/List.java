@@ -30,7 +30,7 @@ import java.util.ArrayList;
 public class List extends AppCompatActivity {
     SwipeMenuListView listView1;
     ArrayList<String> list = new ArrayList<>();
-    DatabaseHelper db=new DatabaseHelper(List.this);
+    DatabaseHelper db = new DatabaseHelper(List.this);
     TextView textView;
     MainActivity activity;
     String main, Temp1, h2, s2;
@@ -43,10 +43,10 @@ public class List extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        toolbar=(Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-      getSupportActionBar().setTitle("City List");
+        getSupportActionBar().setTitle("City List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView1 = (SwipeMenuListView) findViewById(R.id.listview1);
         list = getIntent().getStringArrayListExtra("l");
@@ -86,18 +86,14 @@ public class List extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
 
-                switch (index){
+                switch (index) {
                     case 0:
                         try {
                             String cn = arrayAdapter.getItem(position);
                             db.deleteCity(cn);
+                            displayCity();
                             Toast.makeText(List.this, "delete " + cn, Toast.LENGTH_SHORT).show();
-                            Intent i=new Intent(List.this,MainActivity.class);
-                            finish();
-                            startActivity(i);
-
-                        }
-                        catch(Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
 
@@ -110,19 +106,20 @@ public class List extends AppCompatActivity {
 
 
     }
-//    private void displayCity(){
-//        activity.name=db.getCityList();
-//        if (arrayAdapter == null) {
-//            arrayAdapter=new ArrayAdapter<String>(this,R.layout.listname,R.id.textView2,activity.name);
-////            listView.setAdapter(arrayAdapter);
-//        }
-//        else {
-//            arrayAdapter.clear();
-//            arrayAdapter.addAll(activity.name);
-//            arrayAdapter.notifyDataSetChanged();
-//        }
+//
+    private void displayCity() {
+       list = db.getCityList();
+        if (arrayAdapter == null) {
+            arrayAdapter = new ArrayAdapter<String>(this, R.layout.listname, R.id.textView2, list);
+            listView1.setAdapter(arrayAdapter);
+        } else {
+            arrayAdapter.clear();
+            arrayAdapter.addAll(list);
+            arrayAdapter.notifyDataSetChanged();
+        }
 
     }
+}
 
 
 
